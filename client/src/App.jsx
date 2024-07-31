@@ -8,12 +8,15 @@ import BookList from './components/BookList.jsx'
 import Register from './components/Register.jsx'
 import Login from './components/Login.jsx'
 import DashBoard from './components/DashBoard.jsx'
+import BookRental from './components/BookRental.jsx'
 import './style.css'
+const base = import.meta.env.VITE_BASE_URL || '/'
+
 
 function App() {
     const [userT, setUserT] = useState(null)
     return (
-        <Router>
+        <Router basename={base}>
             <Routes>
                 <Route path="/" element={<Template userT={userT}><BookList /></Template>} />
                 <Route path="/register" element={<Template userT={userT} page="Inscription"><Register /></Template>} />
@@ -23,6 +26,7 @@ function App() {
                 <Route path="/add_book" element={<Template userT={userT} page="Ajout d'un livre"><AddBook /></Template>} />
                 <Route path="/book/:bookId" element={<Template userT={userT} page="Détail du livre"><BookDetails /></Template>} />
                 <Route path="/edit_book/:bookId" element={<Template userT={userT} page="Édition du livre"><EditBook /></Template>} />
+                <Route path="/rent" element={<Template userT={userT} page="Location de livre"><BookRental /></Template>} component={BookRental}/>
             </Routes>
         </Router>
     );
